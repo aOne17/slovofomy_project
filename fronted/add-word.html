@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить слово</title>
+</head>
+<style>
+    /* Основной фон страницы */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    padding: 40px 20px;
+    color: #333;
+}
+
+/* Заголовки */
+h2, h3 {
+    text-align: center;
+    color: #222;
+}
+
+/* Форма */
+form {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.92);
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Поля ввода */
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 8px 0 16px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Таблицы */
+table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 15px;
+}
+
+table th {
+    background-color: #e5e9f0;
+    color: #222;
+}
+
+/* Кнопки */
+button {
+    background-color: #5a88ca;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 5px 0 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3f6db3;
+}
+
+/* Выход */
+#logout-btn {
+    background-color: #c44;
+    margin-top: 20px;
+}
+
+#logout-btn:hover {
+    background-color: #a22;
+}
+
+/* Сообщения */
+#message, #admin-status {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+</style>
+<body>
+    <h2>Добавить новое слово</h2>
+    <form id="wordForm">
+        <label>Слово:</label>
+        <input type="text" id="word" placeholder="Введите слово" required>
+        <br>
+
+        <h3>Формы слова по падежам:</h3>
+        <table id="casesTable">
+            <tr>
+                <th>Падеж</th>
+                <th>Форма (ед.ч)</th>
+                <th>Форма (мн.ч)</th>
+            </tr>
+            <tr>
+                <td>Адаарының</td>
+                <td><input type="text" class="case-input" data-case="Адаарының" data-plural="false" data-type="noun"></td>
+                <td><input type="text" class="case-input" data-case="Адаарының" data-plural="true" data-type="noun"></td>
+            </tr>
+            <tr>
+                <td>Хамаарыштырарының</td>
+                <td><input type="text" class="case-input" data-case="Хамаарыштырарының" data-plural="false" data-type="noun"></td>
+                <td><input type="text" class="case-input" data-case="Хамаарыштырарының" data-plural="true" data-type="noun"></td>
+            </tr>
+            <tr>
+                <td>Бээриниң</td>
+                <td><input type="text" class="case-input" data-case="Бээриниң" data-plural="false" data-type="noun"></td>
+                <td><input type="text" class="case-input" data-case="Бээриниң" data-plural="true" data-type="noun"></td>
+            </tr>
+            <tr>
+                <td>Онаарының</td>
+                <td><input type="text" class="case-input" data-case="Онаарының" data-plural="false" data-type="noun"></td>
+                <td><input type="text" class="case-input" data-case="Онаарының" data-plural="true" data-type="noun"></td>
+            </tr>
+            <tr>
+                <td>Турарының</td>
+                <td><input type="text" class="case-input" data-case="Турарының" data-plural="false" data-type="noun"></td>
+                <td><input type="text" class="case-input" data-case="Турарының" data-plural="true" data-type="noun"></td>
+            </tr>
+            <tr>
+                <td>Үнериниң</td>
+                <td><input type="text" class="case-input" data-case="Үнериниң" data-plural="false" data-type="noun"></td>
+                <td><input type="text" class="case-input" data-case="Үнериниң" data-plural="true" data-type="noun"></td>
+            </tr>
+            <tr>
+                <td>Углаарының</td>
+                <td><input type="text" class="case-input" data-case="Углаарының" data-plural="false" data-type="noun"></td>
+                <td><input type="text" class="case-input" data-case="Углаарының" data-plural="true" data-type="noun"></td>
+            </tr>
+        </table>
+
+        <label>Синонимы:</label>
+        <input type="text" id="otherForms" placeholder="Введите синонимы через запятую">
+        <br>
+        <h3>Глаголы:</h3>
+<table id="verb-table">
+    <tr>
+        <th>Глагол</th>
+        <th>Множественное число</th>
+    </tr>
+    <tr>
+        <td><input type="text" class="verb-input" data-type="verb" data-plural="false"></td>
+        <td><input type="text" class="verb-input" data-type="verb" data-plural="true"></td>
+    </tr>
+</table>
+<button type="button" id="add-verb-row"> Добавить глагол</button>
+
+<h3>Прилагательные:</h3>
+<table id="adj-table">
+    <tr>
+        <th>Прилагательное</th>
+        <th>Множественное число</th>
+    </tr>
+    <tr>
+        <td><input type="text" class="adj-input" data-type="adjective" data-plural="false"></td>
+        <td><input type="text" class="adj-input" data-type="adjective" data-plural="true"></td>
+    </tr>
+</table>
+<button type="button" id="add-adj-row"> Добавить прилагательное</button>
+
+        <button type="submit">Добавить</button>
+    </form>
+
+    <p id="message"></p>
+    <p id="admin-status" style="font-size: 14px; font-weight: bold;"></p>
+    <button id="logout-btn" style="display: none;">Выйти</button>
+
+    <script>
+    function checkAdmin() {
+        const token = localStorage.getItem("token");
+        const adminStatus = document.getElementById("admin-status");
+        const logoutBtn = document.getElementById("logout-btn");
+
+        if (!adminStatus || !logoutBtn) return;
+
+        if (!token) {
+            adminStatus.textContent = "❌ Админский доступ отсутствует";
+            logoutBtn.style.display = "none";
+            return;
+        }
+
+        fetch("http://localhost:5000/check-admin", {
+            method: "GET",
+            headers: { "Authorization": `Bearer ${token}` }
+        })
+        .then(async (response) => {
+            const text = await response.text();
+            try {
+                const data = JSON.parse(text);
+                if (data.message === "Вы администратор") {
+                    adminStatus.textContent = "✅ Админский доступ есть";
+                    logoutBtn.style.display = "inline-block";
+                } else {
+                    adminStatus.textContent = "❌ Админский доступ отсутствует";
+                    logoutBtn.style.display = "none";
+                }
+            } catch (error) {
+                console.error("Ошибка проверки админа: Ответ не в JSON", text);
+                adminStatus.textContent = "Ошибка проверки доступа";
+                logoutBtn.style.display = "none";
+            }
+        })
+        .catch(error => {
+            console.error("Ошибка проверки админа:", error);
+            adminStatus.textContent = "Ошибка проверки доступа";
+            logoutBtn.style.display = "none";
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const addWordForm = document.getElementById("wordForm");
+
+        checkAdmin();
+
+        if (addWordForm) {
+            addWordForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const word = document.getElementById("word").value.trim();
+                if (!word) {
+                    alert("Введите базовую форму слова!");
+                    return;
+                }
+
+                const forms = [];
+
+                document.querySelectorAll(".case-input").forEach((input) => {
+                    const caseName = input.dataset.case;
+                    const formValue = input.value.trim();
+                    const plural = input.dataset.plural === "true";
+                    const type = input.dataset.type;
+                    if (formValue) {
+                        forms.push({ case_name: caseName, form: formValue, plural, type });
+                    }
+                });
+
+                document.querySelectorAll(".verb-input").forEach((input) => {
+                    const formValue = input.value.trim();
+                    const plural = input.dataset.plural === "true";
+                    if (formValue) {
+                        forms.push({ case_name: "глагол", form: formValue, plural, type: "verb" });
+                    }
+                });
+
+                document.querySelectorAll(".adj-input").forEach((input) => {
+                    const formValue = input.value.trim();
+                    const plural = input.dataset.plural === "true";
+                    if (formValue) {
+                        forms.push({ case_name: "прилагательное", form: formValue, plural, type: "adjective" });
+                    }
+                });
+
+                if (forms.length === 0) {
+                    alert("Ошибка: формы слова не заполнены!");
+                    return;
+                }
+
+                const synonyms = document.getElementById("otherForms").value
+                    .split(",")
+                    .map(s => s.trim())
+                    .filter(s => s.length > 0);
+
+                const response = await fetch("http://localhost:5000/add-word", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body: JSON.stringify({ word, forms, synonyms })
+                });
+
+                const data = await response.json();
+                if (!response.ok) {
+                    alert("Ошибка: " + data.message);
+                } else {
+                    alert("Слово успешно добавлено!");
+                    addWordForm.reset();
+                }
+            });
+        }
+    });
+    document.getElementById("add-verb-row").addEventListener("click", () => {
+    const table = document.getElementById("verb-table");
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td><input type="text" class="verb-input" data-type="verb" data-plural="false"></td>
+        <td><input type="text" class="verb-input" data-type="verb" data-plural="true"></td>
+    `;
+    table.appendChild(row);
+});
+
+document.getElementById("add-adj-row").addEventListener("click", () => {
+    const table = document.getElementById("adj-table");
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td><input type="text" class="adj-input" data-type="adjective" data-plural="false"></td>
+        <td><input type="text" class="adj-input" data-type="adjective" data-plural="true"></td>
+    `;
+    table.appendChild(row);
+});
+
+    </script>
+</body>
+</html>

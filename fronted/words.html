@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список слов - Тувинские словоформы</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="words_body">
+
+    <header>
+        <nav class="navbar">
+            <div class="nav-center">
+                <a href="index.html" class="admin-button">Главная</a>
+                <a href="login.html" id="auth-buttons" class="admin-button">Войти</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <div class="search">
+                <h1>Список слов</h1> 
+                <div class="search-controls" style="margin-left: auto; margin-right: 2rem;">
+                <label for="searchInput" class="" style="margin-left: auto;">Поиск:</label>
+                <input type="text" id="searchInput" placeholder="Введите слово..." oninput="filterWords()" class="vector-search-box-input">
+                <button id="addWordBtn" class="btn" style="display: none; margin-left: 20px;" onclick="location.href='add-word.html'">
+                    Добавить слово
+                </button>
+                </div>
+            </div>
+
+            <div id="alphabet-nav">
+                <!-- Алфавитный указатель будет добавлен скриптом -->
+            </div>
+
+            <div class="word_list">
+                <ul id="word-list"></ul> <!-- Список слов -->
+            </div>
+        </main>
+
+        <!-- Модальное окно -->
+        <div id="wordModal" class="modal">
+            <div class="modal-content">
+                <button class="close-button" onclick="closeWordModal()">×</button>
+                <div id="modal-content">
+                    <!-- Сюда вставляется содержимое по клику на слово -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="script.js"></script>
+    <script src="words.js"></script>
+
+</body>
+</html>

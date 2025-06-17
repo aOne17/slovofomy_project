@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в админ-панель</title>
+    
+</head>
+<style>
+    /* Общие настройки страницы */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Хедер */
+header {
+    background-color: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(8px);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header nav {
+    display: flex;
+    justify-content: flex-start;
+}
+
+header nav a {
+    color: #f0f0f0;
+    text-decoration: none;
+    font-size: 16px;
+    margin-right: 20px;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Контейнер формы */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(6px);
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Заголовок */
+.login-container h2 {
+    margin-bottom: 25px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Поля ввода */
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Кнопка */
+.btn {
+    background-color: #5a88ca;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #3f6db3;
+}
+
+/* Сообщение об ошибке */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+</style>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Главная</a>
+        </nav>
+    </header>
+
+    <main class="login-container">
+        <h2>Вход для администратора</h2>
+        <form id="loginForm">
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" required>
+            <button type="submit" class="btn">Войти</button>
+        </form>
+        <p id="error-message" class="error-message"></p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
