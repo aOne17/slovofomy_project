@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     
         try {
-            const response = await fetch("http://localhost:5000/check-admin", {
+            const response = await fetch("/check-admin", {
                 method: "GET",
                 headers: { Authorization: `Bearer ${token}` },
             });
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Загружаем слова из базы
     async function loadWords() {
         try {
-            const response = await fetch("http://localhost:5000/words", { cache: "no-store" }); 
+            const response = await fetch("/words", { cache: "no-store" }); 
             console.log("Ответ сервера:", response);
             
             if (!response.ok) throw new Error("Ошибка загрузки слов");
@@ -139,7 +139,7 @@ document.addEventListener("click", async (event) => {
         if (confirm("Удалить это слово?")) {
             try {
                 const token = localStorage.getItem("token");
-                const response = await fetch(`http://localhost:5000/words/${id}`, {
+                const response = await fetch(`/words/${id}`, {
                     method: "DELETE",
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -175,7 +175,7 @@ function closeWordModal() {
 
 async function openWordModal(wordId) {
     try {
-        const response = await fetch(`http://localhost:5000/words/${wordId}/details`);
+        const response = await fetch(`/words/${wordId}/details`);
         if (!response.ok) throw new Error("Ошибка загрузки данных слова");
 
         const data = await response.json();
@@ -287,7 +287,7 @@ async function openWordModal(wordId) {
 
 async function openEditModal(wordId) {
     try {
-        const response = await fetch(`http://localhost:5000/words/${wordId}/details`);
+        const response = await fetch(`/words/${wordId}/details`);
         if (!response.ok) throw new Error("Ошибка загрузки данных слова");
 
         const data = await response.json();
@@ -375,7 +375,7 @@ document.querySelectorAll("#edit-forms-container .form-group").forEach(row => {
 
     try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`http://localhost:5000/words/${wordId}`, {
+        const response = await fetch(`/words/${wordId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

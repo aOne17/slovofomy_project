@@ -204,7 +204,7 @@ button:hover {
             return;
         }
 
-        fetch("http://localhost:5000/check-admin", {
+        fetch("/check-admin", {
             method: "GET",
             headers: { "Authorization": `Bearer ${token}` }
         })
@@ -285,7 +285,7 @@ button:hover {
                     .map(s => s.trim())
                     .filter(s => s.length > 0);
 
-                const response = await fetch("http://localhost:5000/add-word", {
+                const response = await fetch("/add-word", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
