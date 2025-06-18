@@ -203,12 +203,10 @@ header nav a:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-<<<<<<< HEAD
-=======
-
->>>>>>> ea99dd0 (Сохраняю изменения в styles.css перед pull)
     max-height: 70vh; 
     overflow-y: auto; 
+    max-height: 80vh; /* Ограничиваем высоту модального окна */
+    overflow-y: auto; /* Разрешаем прокрутку */
 }
 
 .close-button {
