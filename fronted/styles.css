@@ -203,6 +203,8 @@ header nav a:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    max-height: 70vh; 
+    overflow-y: auto; 
 }
 .close-button {
     position: absolute;
